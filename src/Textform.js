@@ -1,8 +1,26 @@
 import React, { useState } from "react";
 
 export default function Textform(){
+  const clearValue =()=>{
+    console.log('hello' + text);
+     let newTxt=("");
+     setText(newTxt);
+  }
+  const changeValue =()=>{
+    console.log('hello' + text);
+     let newTxt=text.toLocaleUpperCase();
+     setText(newTxt);
+  }
+  const handleOnChange = (event) =>{
+    console.log('event call');
+    setText(event.target.value)
+  }
+
     const [text, setText] = useState('Hello Everyone');
-    //setText("chnage the value");
+  //  const changeValue =()=>{
+    //  console.log('hello');
+    //  setText("chnage the value");
+    // }
     return(
         
    <>
@@ -21,9 +39,17 @@ export default function Textform(){
     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
     <label className="form-check-label" form="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit" className="btn btn-primary">Submit</button>
+  <button type="submit" className="btn btn-primary my-3">Submit</button>
 </form>
-
+<div className="mb-3">
+  <textarea className="form-control" id="box" rows="3" value={text} onChange={handleOnChange}></textarea>
+</div>
+<button className="btn btn-primary mx-3" onClick={changeValue}>Change Value</button>
+<button className="btn btn-primary mx-3" onClick={clearValue}>Clear Value</button>
+<div className="container my-3">
+  <h1>Your text summary</h1>
+  <p>{text.split(" ").length}words and {text.length}charecter</p>
+</div>
    </>
     );
 }
